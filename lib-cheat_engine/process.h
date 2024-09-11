@@ -164,8 +164,8 @@ protected:
 public:
 	inline unsigned long GetAddress(std::initializer_list<unsigned long> _Offsets)
 	{
-		const unsigned long* 							p_Offsets = _Offsets.begin();
-		const unsigned long long int 					_Length = _Offsets.size();
+		const unsigned long* p_Offsets = _Offsets.begin();
+		const unsigned long long int _Length = _Offsets.size();
 
 		unsigned long _Address = _Module->GetBaseAddress();
 
