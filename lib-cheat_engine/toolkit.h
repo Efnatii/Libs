@@ -334,19 +334,29 @@ public:
 	{
 		BYTE* lpBaseAddress = lModule.base_address();
 
-		for (SIZE_T index = 0; index < (nSize - 1); index++)
-			read(lpBaseAddress + tOffsets[index], lpBaseAddress);
+		if (nSize)
+		{
+			for (SIZE_T index = 0; index < (nSize - 1); index++)
+				read(lpBaseAddress + tOffsets[index], lpBaseAddress);
 
-		return lpBaseAddress + tOffsets[nSize - 1];
+			return lpBaseAddress + tOffsets[nSize - 1];
+		}
+
+		return lpBaseAddress;
 	}
 	template<template <typename...> class X, class T, class... Ts> inline LPVOID find_pointer(Module& lModule, X<T, Ts...>&& tOffsets) noexcept
 	{
 		BYTE* lpBaseAddress = lModule.base_address();
 
-		for (SIZE_T index = 0; index < (tOffsets.size() - 1); index++)
-			read(lpBaseAddress + tOffsets[index], lpBaseAddress);
+		if (tOffsets.size())
+		{
+			for (SIZE_T index = 0; index < (tOffsets.size() - 1); index++)
+				read(lpBaseAddress + tOffsets[index], lpBaseAddress);
 
-		return lpBaseAddress + tOffsets[tOffsets.size() - 1];
+			return lpBaseAddress + tOffsets[tOffsets.size() - 1];
+		}
+
+		return lpBaseAddress;
 	}
 
 public:
